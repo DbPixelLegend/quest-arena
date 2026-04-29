@@ -1,6 +1,6 @@
 {
 	"FileVersion": 3,
-	"EngineAssociation": "{EE3433CE-4BFF-CD91-3168-8C8AEDE2DC6A}",
+	"EngineAssociation": "4.27",
 	"Category": "",
 	"Description": "",
 	"Modules": [
@@ -278,7 +278,7 @@
 		},
 		{
 			"Name": "Oodle",
-			"Enabled": true
+			"Enabled": false
 		},
 		{
 			"Name": "OnlineFramework",

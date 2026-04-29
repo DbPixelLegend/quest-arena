@@ -52,7 +52,7 @@ void AArenaPlayerController::BeginPlay()
 
 	#if WITH_EDITOR
 	// This code will assign ArenaPlayerId with PIE and multiple instances in mind. To avoid HID collision while using editor/OculusLink.
-	if (Role == ROLE_AutonomousProxy || (Role == ROLE_Authority && !UKismetSystemLibrary::IsDedicatedServer(this)))
+	if (GetLocalRole() == ROLE_AutonomousProxy || (GetLocalRole() == ROLE_Authority && !UKismetSystemLibrary::IsDedicatedServer(this)))
 	{
 		static uint8 tmpPlayerId = -1; //0 after first incrementation
 		tmpPlayerId = (tmpPlayerId + 1) % MAX_NUMBER_OF_PLAYERS;
@@ -61,7 +61,7 @@ void AArenaPlayerController::BeginPlay()
 		ClientToServer_Handshake(ArenaPlayerId);
 	}
 	#else
-	if (Role == ROLE_AutonomousProxy) //call from owner client to server
+	if (GetLocalRole() == ROLE_AutonomousProxy) //call from owner client to server
 	{
 		ArenaPlayerId = UArenaHeadsetConfig::GetSaveObject()->GetHeadsetId();
 		ClientToServer_Handshake(ArenaPlayerId);
@@ -71,7 +71,7 @@ void AArenaPlayerController::BeginPlay()
 
 bool AArenaPlayerController::Server_SpawnPlayer()
 {
-	if (Role != ROLE_Authority)
+	if (GetLocalRole() != ROLE_Authority)
 	{
 		UE_LOG(LogTemp, Error, TEXT("Non-server attempted to spawn player"));
 		return false;
@@ -99,7 +99,7 @@ bool AArenaPlayerController::Server_SpawnPlayer()
 
 bool AArenaPlayerController::Server_KillPlayer(bool Permanent)
 {
-	if(Role != ROLE_Authority)
+	if(GetLocalRole() != ROLE_Authority)
 	{
 		UE_LOG(LogTemp, Error, TEXT("Non-server attempted to kill player"));
 		return false;

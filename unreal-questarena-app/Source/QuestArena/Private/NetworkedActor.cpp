@@ -62,7 +62,7 @@ void ANetworkedActor::Tick(float DeltaTime)
 #if !UE_SERVER
 	if (!IsOwnedBy(GetWorld()->GetFirstPlayerController()->AcknowledgedPawn))
 	{
-		FMath::Clamp(DeltaTime, 0.0f, 1.0f);
+		DeltaTime = FMath::Clamp(DeltaTime, 0.0f, 1.0f);
 
 		// Lerp actor location
 		const FVector& actorLocation = GetActorLocation();

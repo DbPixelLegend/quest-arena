@@ -60,9 +60,9 @@ void ANetworkedPawn::Tick(float DeltaSeconds)
 
 	// We need nice interpolation only on client side
 #if !UE_SERVER
-	if (!IsControlled())
+	if (!IsPawnControlled())
 	{
-		FMath::Clamp(DeltaSeconds, 0.0f, 1.0f);
+		DeltaSeconds = FMath::Clamp(DeltaSeconds, 0.0f, 1.0f);
 
 		// Lerp actor location
 		const FVector& actorLocation = GetActorLocation();

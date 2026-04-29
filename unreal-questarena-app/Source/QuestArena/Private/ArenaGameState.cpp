@@ -32,7 +32,7 @@ void AArenaGameState::Multicast_SetGameState_Implementation(ECurrentGameState Ne
 
 	CurrentGameState = NewState;
 
-	if (CurrentGameState == ECurrentGameState::InGame && Role == ROLE_Authority)
+	if (CurrentGameState == ECurrentGameState::InGame && GetLocalRole() == ROLE_Authority)
 	{
 		GameStartedTime = FDateTime::UtcNow();
 	}

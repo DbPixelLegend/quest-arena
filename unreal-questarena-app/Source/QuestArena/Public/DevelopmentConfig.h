@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "DeveloperSettings.h"
 #include "UObject/NoExportTypes.h"
 #include "DevelopmentConfig.generated.h"
 

@@ -17,7 +17,7 @@ void UHealthComponent::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& Out
 void UHealthComponent::BeginPlay()
 {
 	Super::BeginPlay();
-	bReplicates = true;
+	SetIsReplicated(true);
 
 	if (HasAnyFlags(EObjectFlags::RF_ArchetypeObject)) return; //don't do spawn health checks for the archetype object
 
